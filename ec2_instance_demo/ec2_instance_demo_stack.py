@@ -17,6 +17,7 @@ class Ec2InstanceStack(core.Stack):
 
     def __init__(self, scope: Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
+        key_name = ec2.CfnKeyPair(self,"new-key-cdk",key_name="cdk-test")
 
         # The code that defines your stack goes here
 
@@ -47,7 +48,7 @@ class Ec2InstanceStack(core.Stack):
             self,
             "ec2-instance",
             instance_name=instanceName,
-            key_name= 'cdk-test',
+            key_name= key_name,
             instance_type=ec2.InstanceType(instanceType),
             machine_image=ec2.MachineImage().lookup(name=amiName),
             vpc=vpc,
