@@ -45,27 +45,33 @@ $ cdk init --language python
 ```
 
 THEN WE NEED TO MADE CHANGES HERE,
-
-1) REMOVE "core" from import part in ec2_instance_demo_stack.py and instead of it change it to "import aws_cdk as core"
-
+```
+1) ```REMOVE "core" from import part in ec2_instance_demo_stack.py and instead of it change it to "import aws_cdk as core"
+```
+```
 2) ADD "from constructs import Construct" in ec2_instance_demo_stack.py file. 
-
+```
+```
 3) change the def __init__ portion to this:
 
 def __init__(self, scope: Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
-        
-
+```        
+```
 4) REPLACE amiName to amiName="ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20211129"
-
+```
+```
 5) ADD key_name= 'your key pair name',
-
+```
+```
 6) ADD this line inside of class  --> key_name=ec2.CfnKeyPair(self,"new-key-cdk",key_name="cdk-test")
-
+```
+```
 7) in app.py change "from aws_cdk import core" to "import aws_cdk as core".
-
+```
+```
 8) in app.py change "from ec2_instance.ec2_instance_stack import Ec2InstanceStack" to "ec2_instance_demo.ec2_instance_demo_stack import Ec2InstanceStack" .
-
+```
 
 
 
