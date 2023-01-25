@@ -7,17 +7,17 @@ from aws_cdk import (
 from constructs import Construct
 
 
-vpcID="vpc-0881092e182fe1658"
-instanceName="webserver-2"
-instanceType="t2.micro"
-amiName="ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20211129"
+vpcID="YOUR_DEFAULT_VPC_ID" #VPC ID
+instanceName="NAME_OF_INSANCE_WHICH_IS_TO_BE_CREATED" #EC2 INSTANCE NAME
+instanceType="TYPE_OF_INSTANCE" #t2.micro, t3.nano, t4g.small, ...
+amiName="IMAGE_NAME" #OS IMAGE NAME
 
 
 class Ec2InstanceStack(core.Stack):
 
     def __init__(self, scope: Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
-        key_name = ec2.CfnKeyPair(self,"new-key-cdk",key_name="cdk-test")
+        key = ec2.CfnKeyPair(self,"new-key-cdk",key_name="KEY_NAME") #ENTER YOUR KEY NAME WHICH IS TO CREATED OR ALREADY CREATED EARLIER.
 
         # The code that defines your stack goes here
 
@@ -48,7 +48,7 @@ class Ec2InstanceStack(core.Stack):
             self,
             "ec2-instance",
             instance_name=instanceName,
-            key_name= key_name,
+            key_name= key,
             instance_type=ec2.InstanceType(instanceType),
             machine_image=ec2.MachineImage().lookup(name=amiName),
             vpc=vpc,
