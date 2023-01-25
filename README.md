@@ -61,7 +61,7 @@ $ cdk init --language python
 THEN WE NEED TO MADE CHANGES HERE,
 
 ```
-1) ```REMOVE "core" from import part in ec2_instance_demo_stack.py and instead of it change it to "import aws_cdk as core"
+1) REMOVE "core" from import part in ec2_instance_demo_stack.py and instead of it change it to "import aws_cdk as core"
 ```
 
 ```
